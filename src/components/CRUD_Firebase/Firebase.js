@@ -46,5 +46,13 @@ export const SignUp = async ({ email, password }) => {
   //     });
 };
 
-export const SignInSeller = async ({ email, password }) => {};
-export const SignUpSeller = async ({ email, password }) => {};
+export const SignInSeller = async ({ email, password }) => {
+  await signInWithEmailAndPassword(auth, email, password);
+};
+export const SignUpSeller = async ({ email, password }) => {
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+    console.log(err);
+  }
+};

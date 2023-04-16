@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import image1 from "../../image/image1.png";
-import { SignUpSeller } from "../CRUD_Firebase/Firebase";
+// import { SignUpSeller } from "../CRUD_Firebase/Firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../CRUD_Firebase/Firebase";
 const SignUp = () => {
   const [user, setUser] = useState({
     first_name: "",
@@ -10,6 +12,14 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const SignUpSeller = async ({ email, password }) => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -463,7 +473,12 @@ const SignUp = () => {
                 </div>
 
                 <div className="mt-3 xl:mt-2 text-center xl:text-left">
-                  <button className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0 bg-green-600 rounded-lg">
+                  <button
+                    onClick={(e) => {
+                      handleSubmit(e);
+                    }}
+                    className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0 bg-green-600 rounded-lg"
+                  >
                     Sign up
                   </button>
                   <a className="text-theme-1">
