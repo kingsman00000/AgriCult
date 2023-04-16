@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import image1 from "../../image/image1.png";
+import { SignUpSeller } from "../CRUD_Firebase/Firebase";
 const SignUp = () => {
+  const [user, setUser] = useState({
+    first_name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    SignUpSeller(user.email, user.password);
+  };
   return (
     <>
       <div className="flex flex-row">
@@ -45,6 +61,10 @@ const SignUp = () => {
                         type="text"
                         name="first_name"
                         id="first_name"
+                        value={user.first_name}
+                        onChange={(e) => {
+                          handleChange(e);
+                        }}
                         className="intro-x input w-full input--lg border rounded-lg border-gray-300 block col-span-6"
                         placeholder="Name"
                       />
@@ -72,6 +92,10 @@ const SignUp = () => {
                         type="text"
                         name="email"
                         id="email"
+                        value={user.email}
+                        onChange={(e) => {
+                          handleChange(e);
+                        }}
                         className="intro-x rounded-lg input w-full input--lg border border-gray-300 block col-span-6"
                         placeholder="Email"
                       />
@@ -145,13 +169,17 @@ const SignUp = () => {
                     </div>
                     <div className="relative mt-2">
                       <div className="p-2">
-                        <label>Landmark</label>
+                        <label>password</label>
                         <input
                           type="text"
-                          name="landmark"
-                          id="landmark"
+                          name="password"
+                          id="password"
+                          value={user.password}
+                          onChange={(e) => {
+                            handleChange(e);
+                          }}
                           className="intro-x rounded-lg input w-full input--lg border border-gray-300 block col-span-6"
-                          placeholder="Nearby Landmark*(Famous Place/Building Name/Street Name/etc..)"
+                          placeholder="password"
                         />
                       </div>
                       <p className="error landmark"></p>

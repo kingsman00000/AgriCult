@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import image1 from "../../image/image1.png";
+import { SignIn } from "../CRUD_Firebase/Firebase";
+
 const LogInB = () => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const PostData = async (e) => {
+    e.preventDefault();
+    SignIn(user.email_id, user.password);
+  };
+
   return (
     <>
       <div className="flex flex-row bg-green-100">
@@ -13,9 +29,11 @@ const LogInB = () => {
             <button className="bg-orange-500 text-white rounded-2xl m-12 w-32">
               About
             </button>
-            <button className="bg-orange-500 text-white rounded-2xl m-12 w-32">
-              SignUp
-            </button>
+            <a href="/login/buyer">
+              <button className="bg-orange-500 text-white rounded-2xl m-12 w-32">
+                SignUp
+              </button>
+            </a>
           </div>
           <img className="rounded-xl" src={image1} alt="" />
         </div>
@@ -32,12 +50,16 @@ const LogInB = () => {
                   <div className="p-2">
                     <label>Email</label>
                     <input
-                      type="text"
-                      name="user_id"
-                      id="user_id"
+                      type="email"
+                      name="email"
+                      id="email"
+                      value={user.email_id}
+                      onChange={(e) => {
+                        handleChange(e);
+                      }}
                       className="login__input rounded-lg w-1/2 input input--lg border border-gray-300 block col-span-6"
                       placeholder="User Id or Mobile number"
-                      required=""
+                      required
                     />
                   </div>
                   <p className="error user_id"></p>
@@ -50,9 +72,13 @@ const LogInB = () => {
                       type="Password"
                       name="password"
                       id="password"
+                      value={user.password}
+                      onChange={(e) => {
+                        handleChange(e);
+                      }}
                       className="login__input input input--lg border border-gray-300 block col-span-6 w-1/2 rounded-lg"
                       placeholder="Password"
-                      required=""
+                      required
                     />
                   </div>
                   <p className="error password"></p>
@@ -63,8 +89,13 @@ const LogInB = () => {
               </div>
 
               <div className="mt-2 xl:mt-2 text-center xl:text-left p-2">
-                <button className="button button--lg w-full xl:w-32 text-gray-700 border bg-green-400 rounded-lg border-gray-300 mt-3 xl:mt-0">
-                  Sign up
+                <button
+                  onClick={(e) => {
+                    PostData(e);
+                  }}
+                  className="button button--lg w-full xl:w-32 text-gray-700 border bg-green-400 rounded-lg border-gray-300 mt-3 xl:mt-0"
+                >
+                  Sign in
                 </button>
                 <a
                   href="https://www.kisanbandi.com/kisanbandiseller/Registration/"

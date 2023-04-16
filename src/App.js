@@ -17,9 +17,17 @@ import SignUpS from "./components/seller/signup";
 import Expert from "./expert/expert";
 import LogInB from "./components/buyer/login";
 import SignUpB from "./components/buyer/signup";
-
-import Product from "./components/productdetails/product";
+import Guide from "./pages/Guide";
 import Equipment from "./components/service/farmequipment";
+import Product from "./components/productdetails/product";
+// import Equipment from "./components/service/farmequipment";
+import Census from "./components/guide/Census";
+import Credit from "./components/guide/Credit";
+import Cropsnsfm from "./components/guide/Cropsnsfm";
+import Drought from "./components/guide/Drought";
+import Investment from "./components/guide/Investment";
+import Marketing from "./components/guide/Marketing";
+import Noticeboard from "./components/Noticeboard";
 
 function App() {
   return (
@@ -35,15 +43,22 @@ function App() {
             <Route path="contactus" element={<ContactUs />} />
             <Route path="register" element={<Register />} />
             <Route path="register/seller" element={<SignUpS />} />
-            <Route path="register/buyer" element={<SignUpB />} />
+            <Route path="/register/buyer" element={<SignUpB />} />
             <Route path="login/seller" element={<LogInS />} />
             <Route path="login/buyer" element={<LogInB />} />
             <Route path="weather" element={<Weather />} />
             <Route path="feedback" element={<FeedBack />} />
+            <Route path="notice" element={<Noticeboard />} />
 
-            {/* <Route path="guide" element={<Guide />} />*/}
+            <Route path="guide" element={<Guide />} />
+            <Route path="/guide/marketing" element={<Marketing />} />
+            <Route path="/guide/census" element={<Census />} />
+            <Route path="/guide/credit" element={<Credit />} />
+            <Route path="/guide/cropsnsfm" element={<Cropsnsfm />} />
+            <Route path="/guide/drought" element={<Drought />} />
+            <Route path="/guide/investment" element={<Investment />} />
             <Route path="expert" element={<Expert />} />
-            {/* <Route path="services" element={<Service />} /> */}
+            <Route path="services" element={<Equipment />} />
             {/* <Route path="notice" element={<NoticeBoard />} />  */}
 
             <Route path="*" element={<Err />} />

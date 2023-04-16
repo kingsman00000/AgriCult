@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import image1 from "../../image/image1.png";
+import { SignUp } from "../CRUD_Firebase/Firebase";
+
 const SignUpB = () => {
+  const [user, setUser] = useState({
+    first_name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    SignUp(user.email, user.password);
+  };
+
   return (
     <>
       <div className="flex flex-row">
@@ -45,6 +63,10 @@ const SignUpB = () => {
                         type="text"
                         name="first_name"
                         id="first_name"
+                        value={user.first_name}
+                        onChange={(e) => {
+                          handleChange(e);
+                        }}
                         className="intro-x input w-full input--lg border rounded-lg border-gray-300 block col-span-6"
                         placeholder="Name"
                       />
@@ -72,6 +94,10 @@ const SignUpB = () => {
                         type="text"
                         name="email"
                         id="email"
+                        value={user.email}
+                        onChange={(e) => {
+                          handleChange(e);
+                        }}
                         className="intro-x rounded-lg input w-full input--lg border border-gray-300 block col-span-6"
                         placeholder="Email"
                       />
@@ -83,7 +109,7 @@ const SignUpB = () => {
                       <label>Primary phone</label>
                       <input
                         type="text"
-                        name="phonenumber"
+                        name="phone"
                         maxlength="10"
                         id="phonenumber"
                         className="intro-x rounded-lg input w-full input--lg border border-gray-300 block col-span-6"
@@ -112,20 +138,20 @@ const SignUpB = () => {
 
                   <div className="relative mt-2">
                     <div className="p-2">
-                      <label>Seller type</label>
-                      <select
-                        name="seller_type"
-                        id="seller_type"
-                        className="intro-x input w-full input--lg border border-gray-300 block col-span-6"
-                      >
-                        <option value=""> --- Select Seller Type --- </option>
-                        <option value="farmer">Farmer</option>
-                        <option value="landmark">Landmark</option>
-                        <option value="brokers">Brokers </option>
-                        <option value="exporter">Exporter </option>
-                      </select>
+                      <label>Password</label>
+                      <input
+                        type="text"
+                        name="password"
+                        id="password"
+                        value={user.password}
+                        onChange={(e) => {
+                          handleChange(e);
+                        }}
+                        className="intro-x rounded-lg input w-full input--lg border border-gray-300 block col-span-6"
+                        placeholder="password"
+                      />
                     </div>
-                    <p className="error seller_type"></p>
+                    <p className="error landmark"></p>
                   </div>
                 </div>
                 <div id="landmark_section">
@@ -143,18 +169,23 @@ const SignUpB = () => {
                       </div>
                       <p className="error shopname"></p>
                     </div>
+
                     <div className="relative mt-2">
                       <div className="p-2">
-                        <label>Landmark</label>
-                        <input
-                          type="text"
-                          name="landmark"
-                          id="landmark"
-                          className="intro-x rounded-lg input w-full input--lg border border-gray-300 block col-span-6"
-                          placeholder="Nearby Landmark*(Famous Place/Building Name/Street Name/etc..)"
-                        />
+                        <label>Seller type</label>
+                        <select
+                          name="seller_type"
+                          id="seller_type"
+                          className="intro-x input w-full input--lg border border-gray-300 block col-span-6"
+                        >
+                          <option value=""> --- Select Seller Type --- </option>
+                          <option value="farmer">Farmer</option>
+                          <option value="landmark">Landmark</option>
+                          <option value="brokers">Brokers </option>
+                          <option value="exporter">Exporter </option>
+                        </select>
                       </div>
-                      <p className="error landmark"></p>
+                      <p className="error seller_type"></p>
                     </div>
                   </div>
                 </div>
@@ -395,7 +426,12 @@ const SignUpB = () => {
                 </div>
 
                 <div className="mt-3 xl:mt-2 text-center xl:text-left  m-24">
-                  <button className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0 bg-green-600 rounded-lg">
+                  <button
+                    onClick={(e) => {
+                      handleSubmit(e);
+                    }}
+                    className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0 bg-green-600 rounded-lg"
+                  >
                     Sign up
                   </button>
                   <a className="text-theme-1">

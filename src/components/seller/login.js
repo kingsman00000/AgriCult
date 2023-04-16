@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import image1 from "../../image/image1.png";
+import { SignInSeller } from "../CRUD_Firebase/Firebase";
+
 const SignUp = () => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    SignInSeller(user.email, user.password);
+  };
+
   return (
     <>
       <div className="flex flex-row bg-green-100">
@@ -33,8 +50,12 @@ const SignUp = () => {
                     <label>Email</label>
                     <input
                       type="text"
-                      name="user_id"
-                      id="user_id"
+                      name="email"
+                      id="email"
+                      value={user.email}
+                      onChange={(e) => {
+                        handleChange(e);
+                      }}
                       className="login__input rounded-lg w-1/2 input input--lg border border-gray-300 block col-span-6"
                       placeholder="User Id or Mobile number"
                       required=""
@@ -50,6 +71,10 @@ const SignUp = () => {
                       type="Password"
                       name="password"
                       id="password"
+                      value={user.password}
+                      onChange={(e) => {
+                        handleChange(e);
+                      }}
                       className="login__input input input--lg border border-gray-300 block col-span-6 w-1/2 rounded-lg"
                       placeholder="Password"
                       required=""
@@ -63,7 +88,12 @@ const SignUp = () => {
               </div>
 
               <div className="mt-2 xl:mt-2 text-center xl:text-left p-2">
-                <button className="button button--lg w-full xl:w-32 text-gray-700 border bg-green-400 rounded-lg border-gray-300 mt-3 xl:mt-0">
+                <button
+                  onClick={(e) => {
+                    handleSubmit(e);
+                  }}
+                  className="button button--lg w-full xl:w-32 text-gray-700 border bg-green-400 rounded-lg border-gray-300 mt-3 xl:mt-0"
+                >
                   Sign up
                 </button>
                 <a className="text-theme-1"> Create an new account Sign up ?</a>

@@ -12,6 +12,7 @@ import DataCardd from "../components/DataCardd";
 import DataCarddd from "../components/DataCarddd";
 
 import { Equip_Categories } from "../components/Equip_Categories";
+import Bottomgallery from "../components/Bottomgallery";
 
 const Home = () => {
   return (
@@ -21,6 +22,11 @@ const Home = () => {
 
       <SellerStrip />
       <ProductStrip />
+
+      <div className="flex">
+        <Bottomgallery iurl="" line="" />
+      </div>
+
       <div className="flex items-center justify-center my-6">
         <DataCard
           line1="Fresh Products"
