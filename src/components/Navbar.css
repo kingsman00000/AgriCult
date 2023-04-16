@@ -1,0 +1,22 @@
+.dropMenu{
+    display:none;
+}
+.dropMenu:hover{
+    display:block;
+}
+.allCategories:hover+ div{
+display:block;
+/* text-decoration: underline; */
+}
+
+@media only screen and (max-width: 1350px) {
+   #navbar-sticky{
+    display:none;
+   }
+   .my-navbar{
+    width:90vw;
+   }
+   .threeLines{
+    display: block;
+   }
+  }
