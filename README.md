@@ -14,6 +14,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### `npm install -D tailwindcss`
+install for adding css
+
+### `npm install firebase`
+use firebase for storage and authentication 
+
+add bootstrap also in some place we add bootstrap for better UI design ,use cdn of bootstrap
+
+### `npm install semantic-ui-react`
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
